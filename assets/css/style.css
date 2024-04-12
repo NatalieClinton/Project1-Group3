@@ -7,6 +7,53 @@
     --offBlack: #1C181B;
 }
 
+/* Navigation Bar Styles */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--beige);
+    padding: 10px 20px;
+    border-radius: 10px; 
+}
+
+/* Logo (Image) Styles */
+nav img {
+    max-height: 40px;
+    border-radius: 5px; 
+}
+
+/* Search Bar Styles */
+nav form {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+nav input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--gray);
+    border-radius: 5px; 
+    width: 70%;
+    max-width: 400px;
+}
+
+/* Option Button Styles */
+nav a {
+    padding: 10px 15px;
+    margin-left: 10px; /* Space between buttons */
+    background-color: var(--brown);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 15px; /* Rounded corners for the buttons */
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--warmBrown);
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     background-color: var(--offBlack);

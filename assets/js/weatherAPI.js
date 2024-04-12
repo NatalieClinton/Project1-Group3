@@ -1,3 +1,3 @@
 // API key and URL for OpenWeatherMap API
-const apiKey = '1299d123a2b9161f68b77b51026d18fe';
+const apiKey = 'd355ce3e26db350e68b9a4e198dac7bb';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/';

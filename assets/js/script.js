@@ -85,38 +85,3 @@ document.addEventListener('DOMContentLoaded', function () {
     console.error('Error getting location: ' + error.message);
   });
 });
-
-// YELP Fusion API 
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer XEI7zCKiTsrcNgP0ObLbm9EWlQ87cD2Jp9_5lcPXjdVG5WPvP81Dd8iZv4E3FEnqRiSD85w1OmVe9Vyd5kRlNUgJ6oxUZeUYK499qMWsXZu85aaS3gcSpHr1NvEVZnYx'
-  }
-};
-
-const cityName = 'toronto'
-
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-
-const apiURL = `https://api.yelp.com/v3/businesses/search?location=${cityName}&sort_by=best_match&limit=20`;
-
-fetch(proxyUrl + apiURL, options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
-
-  
-  // $.ajax(settings)
-  //   .done(function(response) {
-  //     const price = response.price;
-  //     // Create a new div element for price
-  //     const priceDiv = document.createElement('div');
-  //     priceDiv.innerText = 'Price: ' + price;
-  //     // Append the price div under the corresponding restaurant element
-  //     const restaurant = document.getElementById(restaurantId);
-  //     restaurant.appendChild(priceDiv);
-  //   })
-  //   .fail(function(xhr, status, error) {
-  //     console.error('Failed to fetch price:', error);
-  //   });

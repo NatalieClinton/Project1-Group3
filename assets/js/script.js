@@ -103,7 +103,7 @@ function addPriceToRestaurant(restaurantId) {
   };
 
   $.ajax(settings)
-    .done(function(response) {
+    .done(function (response) {
       const price = response.price;
       // Create a new div element for price
       const priceDiv = document.createElement('div');
@@ -112,7 +112,25 @@ function addPriceToRestaurant(restaurantId) {
       const restaurant = document.getElementById(restaurantId);
       restaurant.appendChild(priceDiv);
     })
-    .fail(function(xhr, status, error) {
+    .fail(function (xhr, status, error) {
       console.error('Failed to fetch price:', error);
     });
 }
+
+const apiKey = 'AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA';
+const searchQuery = 'restaurants in New York'; // Example search query
+
+const searchUrl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${searchQuery}&key=${apiKey}`;
+
+fetch(searchUrl)
+  .then(response => response.json())
+  .then(data => {
+    if (data.results && data.results.length > 0) {
+      const placeId = data.results[0].place_id; // Use the first result's place_id
+      console.log('Place ID:', placeId);
+    } else {
+      console.error('No results found.');
+    }
+  })
+  .catch(error => console.error('Error fetching data:', error));
+

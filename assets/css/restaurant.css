@@ -151,6 +151,61 @@ button {
     font-size: 15px;
 }
 
+.save-rest-btn {
+    background-color: #1b1a1dcd;
+    color: #EBEAE9;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-modal-btn {
+    border: 1px solid #EBEAE9;
+    ;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0;
+}
+
+.weather-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    text-align: center;
+    background-color: #1b1a1df1;
+    color: #EBEAE9;
+    font-size: 20px;
+    border-radius: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.forecast {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.weather-details {
+    margin: 20px;
+}
+
+
 
 @media screen and (max-width:1200px) {
     .search-input {

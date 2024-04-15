@@ -1,47 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hungry Explorer - Find local eateries effortlessly </title>
-    <!-- TAILWIND CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- OUR CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/contact.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hungry Explorer</title>
+  <link rel="stylesheet" href="./Assets/CSS/style.css"> <!-- Relative path to CSS file -->
 </head>
 
 <body>
-    <img src="./assets/images/HungryExplorerLogo.jpg"
-        alt="Logo of 'Hungry Explorer' featuring a chefs hat, fork, knife, and a pretzel with a circular starry motif">
-    <h1>Welcome to the Hungry Explorer</h1>
-    <p>Your ultimate companion for culinary exploration! Whether you're a local foodie or a hungry traveler, Hungry
-        Explorer helps you discover the perfect dining spot nearby. With its intuitive interface and powerful search
-        filters, finding your ideal restaurant is a breeze. From cozy cafes to exotic eateries, explore a world of
-        flavors with Hungry Explorer.</p>
-
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm">
-                <input type="text" id="username" placeholder="Username" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
-            </form>
-        </div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">
+      <!-- Assuming HungryExplorerLogo.jpg is in the same folder as this HTML file -->
+      <img src="HungryExplorerLogo.jpg" alt="Logo">
     </div>
+    <div class="title">Hungry Explorer</div>
+    <div class="navbar-links">
+      <a href="#" id="signUpBtn">Sign Up</a>
+      <a href="contact.html">Contact Us</a> <!-- Link to contact.html -->
+    </div>
+  </div>
 
-    <div id="map" class="h-64"></div>
-    <div id="restaurantList" class="mt-4"></div>
-    <div id="price" class="mt-4"></div>
+  <!-- Modal -->
+  <div class="modal" id="signUpModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Sign Up</h2>
+      <!-- Sign-up form -->
+      <div class="modal-body">
+        <form id="addEmailForm">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="emailAddress" class="form-label">Email Address:</label>
+                <input type="email" class="form-control" id="emailAddress" required> <!-- Changed type to email -->
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password" required>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" form="addEmailForm" class="btn btn-success" id="addTaskButton">
+          Register
+        </button>
+      </div>
+    </div>
+  </div>
 
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA&libraries=places"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/script.js"></script>
+  <!-- Address search container -->
+  <div class="search-container">
+    <button id="addressSearchBtn">Find Restaurant Near You</button>
+    <input type="text" id="addressInput" placeholder="Enter your address">
+  </div>
+
+  <!-- Background image -->
+  <div class="background-image"></div>
+
+  <!-- JavaScript files -->
+  <script src="./Assets/JS/script.js"></script> <!-- Relative path to JavaScript file -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA&libraries=places" async defer></script>
 </body>
-
 </html>

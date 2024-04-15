@@ -29,5 +29,21 @@ function submitLocation() {
         currentCity.push(city)
         localStorage.setItem('currentCity', JSON.stringify(currentCity))
         searchInput.value = ''
+        getRestaurantLocation(city);
+
     }
+}
+
+//Use open weather api to get lat, lon of that city
+function getRestaurantLocation(restaurantCity) {
+    const weatherApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${restaurantCity}&appid=${weatherApiKey}`;
+    fetch(weatherApiUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    const longitude = data[0].lon;
+                    const latitude = data[0].lat;
+                });
+            }
+        });
 }

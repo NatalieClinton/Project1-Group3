@@ -14,11 +14,11 @@
 <body class="font">
     <header>
         <div class="header-container">
-            <img src="./assets/images/HungryExplorerLogo.jpg" alt="logo" class="logo-img">
+            <img src="assets/images/HungryExplorerLogo.jpg" alt="logo" class="logo-img">
             <span class="search-container">
                 <input type="text" id="search-input" name="search-input" aria-label="search" placeholder="Search"
                     class="search-input">
-                <button class="search-btn">Search</button>
+                <button class="search-btn btn">Search</button>
             </span>
             <span class="nav-links">
                 <a href="#">Home</a>
@@ -30,25 +30,32 @@
     </header>
 
     <main>
+        <section class="weather-container hidden">
+            <div class="btn-container">
+                <button class="close-modal-btn btn">X</button>
+            </div>
+            <h1>Daily Weather</h1>
+            <article class="forecast">
+                <div class="top weather-details"></div>
+                <div class="bottom weather-details"></div>
+            </article>
+        </section>
         <!--Filter Btns-->
         <section class="filter-container">
-            <button class="ratingsBtn">3 or more stars</button>
-            <button class="openedBtn">Opened</button>
+            <button class="ratingsBtn btn">4 or more stars</button>
+            <button class="weather-btn btn">Weather</button>
         </section>
         <!--End of filter btns-->
         <!--Start of restaurant section-->
         <section class="restaurant-section">
             <h1 class="title">Quick Options</h1>
-            <div class="options-container">
-                <!-- <article class="restaurant-card"></article> -->
-
-            </div>
+            <div class="options-container"></div>
 
         </section>
         <!--End of restaurant section-->
 
     </main>
-    <script src="script.js"></script>
+    <script src="assets/js/restaurant.js"></script>
 </body>
 
 </html>

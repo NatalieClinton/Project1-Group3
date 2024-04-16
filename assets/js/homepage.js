@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     localStorage.setItem("password", password);
 
     // Redirect to the next page
-    window.location.href = "next_page.html";
+    window.location.href = "restaurant.html";
   });
 });
 

@@ -133,6 +133,7 @@ section .options-container .restaurant-card .intro {
 .filter-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 30px;
     height: 100%;
 }

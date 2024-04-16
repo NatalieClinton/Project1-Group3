@@ -271,3 +271,23 @@ function renderRestHighRatings(ratingsData) {
         }
     }
 }
+
+
+//END - SEARCH BY RATING
+
+//START - get weather forecast
+
+function getLocalWeather(cityLat, cityLon) {
+    const weatherApiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&appid=${weatherApiKey}&units=metric`
+
+    fetch(weatherApiUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    const cityName = data.city.name
+                    const dailyWeather = data.list[0]
+                    renderLocalWeather(dailyWeather)
+                })
+            }
+        })
+}

@@ -214,3 +214,60 @@ function filterHighRatings(latitude, longitude) {
         })
 }
 
+function renderRestHighRatings(ratingsData) {
+    optionsContainer.innerHTML = '';
+
+    for (let i = 0; i < ratingsData.length; i++) {
+        const article = document.createElement('article');
+        article.classList.add('restaurant-card');
+
+        const companyImg = document.createElement('img');
+        if (ratingsData[i].photos && ratingsData[i].photos.length > 0) {
+            const photoReference = ratingsData[i].photos[0].photo_reference;
+            const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${googleApiKey}`;
+            companyImg.src = photoUrl;
+        } else {
+            companyImg.src = 'placeholder-image-url.jpg';
+        }
+        companyImg.classList.add('restaurant-img');
+
+        const introDiv = document.createElement('div');
+        introDiv.classList.add('intro');
+
+        const titleEl = document.createElement('h1');
+        titleEl.textContent = ratingsData[i].name;
+
+        const detailsDiv = document.createElement('div');
+        detailsDiv.classList.add('details');
+
+        const rating = document.createElement('p');
+        rating.textContent = `${ratingsData[i].rating} stars`;
+
+        const saveButton = document.createElement('button');
+        saveButton.textContent = 'Save';
+        saveButton.classList.add("save-rest-btn")
+        saveButton.addEventListener('click', function () {
+            let savedRestHighRating = JSON.parse(localStorage.getItem('savedRestHighRating')) || [];
+
+            const savedRestInfo = {
+                name: ratingsData[i].name,
+                image: companyImg.src,
+                rating: ratingsData[i].rating
+
+            };
+
+            savedRestHighRating.push(savedRestInfo);
+            localStorage.setItem('savedRestHighRating', JSON.stringify(savedRestInfo));
+        });
+
+        introDiv.append(titleEl, saveButton);
+        detailsDiv.append(rating);
+
+        article.append(companyImg, introDiv, detailsDiv);
+        optionsContainer.appendChild(article);
+
+        if (optionsContainer.children.length >= 6) {
+            break;
+        }
+    }
+}

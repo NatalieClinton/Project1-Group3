@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (savedRestaurantData) {
         const parsedRestaurantData = JSON.parse(savedRestaurantData);
         renderLocalRestaurants(parsedRestaurantData);
+    } else {
+        optionsContainer.innerHTML = 'Enter your location to view local restaurants'
     }
     if (savedHighRatings) {
         const parsedHighRatings = JSON.parse(savedHighRatings)
@@ -49,6 +51,7 @@ closeModalBtn.addEventListener('click', function () {
 })
 
 //END - toggle weather
+
 //START - SEARCH BY LOCATION
 
 //User submits their city
@@ -102,23 +105,20 @@ function getLocalRestaurant(lat, lon) {
 
 //render results on the screen
 
-
-
-
 function renderLocalRestaurants(restaurantData) {
     console.log(restaurantData);
     // Clear existing restaurant cards
     optionsContainer.innerHTML = '';
 
     localStorage.setItem("restaurantData", JSON.stringify(restaurantData));
-
+    //looping through restaurantData and ensuring only 6 restaurants are rendered
     for (let i = 0; i < restaurantData.length; i++) {
         const article = document.createElement('article');
         article.classList.add('restaurant-card');
 
         const companyImg = document.createElement('img');
 
-
+        //Checking there are any photos available
         if (restaurantData[i].photos && restaurantData[i].photos.length > 0) {
             const photoReference = restaurantData[i].photos[0].photo_reference;
 
@@ -129,8 +129,10 @@ function renderLocalRestaurants(restaurantData) {
         companyImg.classList.add('restaurant-img');
 
         const introDiv = document.createElement('div');
+
         introDiv.classList.add('intro');
 
+        //restaurant name
         const titleEl = document.createElement('h1');
         titleEl.textContent = restaurantData[i].name;
 
@@ -139,11 +141,12 @@ function renderLocalRestaurants(restaurantData) {
 
         const rating = document.createElement('p');
         rating.textContent = `${restaurantData[i].rating} stars`;
+
         /* save button*/
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Save';
         saveButton.classList.add("save-rest-btn")
-        saveButton.addEventListener('click', function () {
+        saveButton.addEventListener('click', () => {
             let savedRestaurant = JSON.parse(localStorage.getItem('savedRestaurant')) || [];
 
             const savedLocalRestData = {
@@ -171,6 +174,9 @@ function renderLocalRestaurants(restaurantData) {
 }
 
 
+//END - SEARCH BY LOCATION
+
+
 //START - SEARCH BY RATING
 //Uses location user submits into input field to lat and lon
 function highRatingLocation() {
@@ -196,6 +202,8 @@ function highRatingLocation() {
         })
 }
 
+
+//uses lat and lon to get data based on city - filter through and return restaurants over 4 star rating
 function filterHighRatings(latitude, longitude) {
     const googleApiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&type=restaurant&key=${googleApiKey}`;
 
@@ -209,31 +217,35 @@ function filterHighRatings(latitude, longitude) {
                     console.log(restOverFourStars)
 
                     renderRestHighRatings(restOverFourStars)
+
                 })
             }
         })
 }
 
+
 function renderRestHighRatings(ratingsData) {
     optionsContainer.innerHTML = '';
-
+    //looping through data, only 6 restaurants rendered
     for (let i = 0; i < ratingsData.length; i++) {
         const article = document.createElement('article');
         article.classList.add('restaurant-card');
 
         const companyImg = document.createElement('img');
+        //checking if any company photos exist
         if (ratingsData[i].photos && ratingsData[i].photos.length > 0) {
             const photoReference = ratingsData[i].photos[0].photo_reference;
             const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${googleApiKey}`;
             companyImg.src = photoUrl;
         } else {
-            companyImg.src = 'placeholder-image-url.jpg';
+            companyImg.src = 'placeholder-image-url.jpg'; // Use a placeholder image
         }
         companyImg.classList.add('restaurant-img');
 
         const introDiv = document.createElement('div');
         introDiv.classList.add('intro');
 
+        //restaurant name
         const titleEl = document.createElement('h1');
         titleEl.textContent = ratingsData[i].name;
 
@@ -243,22 +255,23 @@ function renderRestHighRatings(ratingsData) {
         const rating = document.createElement('p');
         rating.textContent = `${ratingsData[i].rating} stars`;
 
+        //start of save btn
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Save';
         saveButton.classList.add("save-rest-btn")
-        saveButton.addEventListener('click', function () {
+        saveButton.addEventListener('click', () => {
             let savedRestHighRating = JSON.parse(localStorage.getItem('savedRestHighRating')) || [];
 
             const savedRestInfo = {
                 name: ratingsData[i].name,
                 image: companyImg.src,
                 rating: ratingsData[i].rating
-
             };
 
             savedRestHighRating.push(savedRestInfo);
             localStorage.setItem('savedRestHighRating', JSON.stringify(savedRestInfo));
         });
+        //end of saved btn
 
         introDiv.append(titleEl, saveButton);
         detailsDiv.append(rating);
@@ -271,7 +284,6 @@ function renderRestHighRatings(ratingsData) {
         }
     }
 }
-
 
 //END - SEARCH BY RATING
 
@@ -291,3 +303,26 @@ function getLocalWeather(cityLat, cityLon) {
             }
         })
 }
+
+function renderLocalWeather(weather) {
+    // Clear existing content
+    weatherDetailsTop.innerHTML = '';
+    weatherDetailsBottom.innerHTML = '';
+
+    //Creating weather elements and rendering data
+    const tempPara = document.createElement('p');
+    tempPara.textContent = `Temp: ${weather.main.temp} C`;
+
+    const tempFeelPara = document.createElement('p');
+    tempFeelPara.textContent = `Feels like: ${weather.main.feels_like} C`;
+
+    const weatherDesc = document.createElement('p');
+    weatherDesc.textContent = `Description: ${weather.weather[0].description}`;
+
+    const humidity = document.createElement('p');
+    humidity.textContent = `Humidity: ${weather.main.humidity}%`;
+
+    weatherDetailsTop.append(tempPara, tempFeelPara);
+    weatherDetailsBottom.append(weatherDesc, humidity);
+}
+

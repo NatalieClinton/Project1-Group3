@@ -4,39 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Information</title>
-    <link rel="stylesheet" href=".assets/css/favorites.css">
-    <link rel="stylesheet" href="./asset/js/css/style.css">
-    
-
+    <link rel="stylesheet" href="./assets/css/favorites.css">
 </head>
 <body>
-
-           <!-- Navbar -->
-           <nav>
-            <!-- Logo (Image) -->
-            <img src="./assets/images/HungryExplorerLogo.jpg" alt="Logo">
-            
-            <!-- Search Bar -->
-            <form>
-                <input type="text" placeholder="Search...">
-            </form>
-            
-            <!-- Option Buttons -->
-            <a href="index.html">Home</a>
-            <a href="restaurant.html">Restaurants</a>
-            <a href="contact.html">Contacts</a>
-            <a href="saved.html">Saved</a>
-        </nav>
-
     <div class="container">
         <h1>Saved Restaurants</h1>
-     </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <input id="searchBar" type="text" placeholder="Search Restaurants...">
+                <img src="./assets/images/HungryExplorerLogo.jpg" alt="app logo">
+            </ul>
+        </nav>
+    </div>
     <div class="container">
         <h1>Restaurant Manager</h1>
         <div id="restaurants-container"></div>
         <button onclick="addRestaurant()">add restaurant</button>
     </div>
-        <script src="./asset/js/script.js"></script> 
+        <script src="./asset/js/script.js"></script>
         <script scr="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtHu4htfnL6bQ8_NLxxR5nrGXIH0zX8tM&libraries=places&callback=initAutocomplete"async defer></script>
     </div>
 </body>

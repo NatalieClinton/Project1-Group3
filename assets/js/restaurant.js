@@ -118,16 +118,13 @@ function renderLocalRestaurants(restaurantData) {
 
         const companyImg = document.createElement('img');
 
-        // Check if photos array is defined and not empty
+
         if (restaurantData[i].photos && restaurantData[i].photos.length > 0) {
             const photoReference = restaurantData[i].photos[0].photo_reference;
 
             const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${googleApiKey}`;
             companyImg.src = photoUrl;
-        } //else {
-        // Handle case where no photos are available
-        // companyImg.src = 'placeholder-image-url.jpg'; // Provide a placeholder image URL
-        // }
+        }
 
         companyImg.classList.add('restaurant-img');
 
@@ -146,14 +143,14 @@ function renderLocalRestaurants(restaurantData) {
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Save';
         saveButton.classList.add("save-rest-btn")
-        saveButton.addEventListener('click', () => {
+        saveButton.addEventListener('click', function () {
             let savedRestaurant = JSON.parse(localStorage.getItem('savedRestaurant')) || [];
 
             const savedLocalRestData = {
                 name: restaurantData[i].name,
-                image: companyImg.src, // Use companyImg.src directly
+                image: companyImg.src,
                 rating: restaurantData[i].rating
-                // Add other relevant restaurant data properties here
+
             };
 
             savedRestaurant.push(savedLocalRestData);
@@ -194,6 +191,24 @@ function highRatingLocation() {
                     const restLat = data[0].lat
                     const restLon = data[0].lon
                     filterHighRatings(restLat, restLon)
+                })
+            }
+        })
+}
+
+function filterHighRatings(latitude, longitude) {
+    const googleApiUrl = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&type=restaurant&key=${googleApiKey}`;
+
+    fetch(googleApiUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    const restOverFourStars = data.results.filter(function (item) {
+                        return item.rating >= 4
+                    })
+                    console.log(restOverFourStars)
+
+                    renderRestHighRatings(restOverFourStars)
                 })
             }
         })

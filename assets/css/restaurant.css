@@ -4,17 +4,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    /* Logo Colour Palette */
-    --beige: #E3DAC7;
-    --brown: #251D18;
-    --gray: #9A9A9B;
-    --warmBrown: #71542A;
-    --offBlack: #1C181B;
-    --btn-background: #1b1a1dcd
-}
-
-
 /*GOOGLE FONTS*/
 
 /* <uniquifier>: Use a unique and descriptive class name
@@ -70,8 +59,7 @@ header a {
 /*MAIN*/
 
 main {
-    /* background-color: #6c4e2c5b; */
-    background-color: var(--beige);
+    background-color: #6c4e2c5b;
     min-height: 100vh;
 }
 
@@ -115,6 +103,16 @@ main {
     margin: 5px 0;
 }
 
+section .options-container .restaurant-card .details {
+    display: flex;
+    justify-content: center;
+}
+
+section .options-container .restaurant-card .intro {
+    display: flex;
+    justify-content: center;
+}
+
 .details a {
     color: black
 }
@@ -139,9 +137,9 @@ main {
     height: 100%;
 }
 
-button {
-    background-color: var(--btn-background);
-    color: var(--beige);
+.btn {
+    background-color: #1b1a1dcd;
+    color: #EBEAE9;
     margin: 0 10px;
     padding: 12px 18px;
     width: 150px;
@@ -205,8 +203,6 @@ button {
     margin: 20px;
 }
 
-
-
 @media screen and (max-width:1200px) {
     .search-input {
         /* padding: 5px 10px; */
@@ -244,4 +240,28 @@ button {
         width: 100px;
     }
 
+    .weather-container {
+        width: 80%;
+    }
+
+    .top,
+    .bottom {
+        margin: 20px
+    }
+
+    .logo-img {
+        height: 50px;
+    }
+
+    .search-btn {
+        width: 100px;
+    }
+
+
+}
+
+@media screen and (max-width: 600px) {
+    .weather-container {
+        font-size: 16px;
+    }
 }

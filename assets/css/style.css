@@ -1,9 +1,9 @@
+/* Logo Colour Palette */
 :root {
-    /* Logo Colour Palette */
-    --beige: #E3DAC7; 
-    --brown: #251D18; 
-    --gray: #9A9A9B; 
-    --warmBrown: #71542A; 
+    --beige: #E3DAC7;
+    --brown: #251D18;
+    --gray: #9A9A9B;
+    --warmBrown: #71542A;
     --offBlack: #1C181B;
 }
 
@@ -14,13 +14,13 @@ nav {
     justify-content: space-between;
     background-color: var(--beige);
     padding: 10px 20px;
-    border-radius: 10px; 
+    border-radius: 10px;
 }
 
 /* Logo (Image) Styles */
 nav img {
     max-height: 40px;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
 /* Search Bar Styles */
@@ -34,7 +34,7 @@ nav form {
 nav input[type="text"] {
     padding: 10px;
     border: 1px solid var(--gray);
-    border-radius: 5px; 
+    border-radius: 5px;
     width: 70%;
     max-width: 400px;
 }
@@ -54,6 +54,7 @@ nav a:hover {
     background-color: var(--warmBrown);
 }
 
+/* Body and general text styles */
 body {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
     background-color: var(--offBlack);
@@ -64,6 +65,12 @@ body {
     line-height: 1.6;
 }
 
+/* Header styles */
+h1, h2, h3 {
+    margin-top: 0;
+    color: #ddd;
+}
+
 h1 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -71,6 +78,7 @@ h1 {
     text-align: center;
 }
 
+/* Paragraph styles */
 p {
     font-size: 1.1rem;
     margin-bottom: 2rem;
@@ -78,6 +86,7 @@ p {
     text-align: center;
 }
 
+/* Image styles */
 img {
     display: block;
     margin: 0 auto;
@@ -85,6 +94,7 @@ img {
     height: auto;
 }
 
+/* Modal styles */
 .modal {
     display: none;
     position: fixed;
@@ -121,6 +131,7 @@ img {
     text-decoration: none;
 }
 
+/* Map styles */
 #map {
     height: 400px;
     width: 100%;
@@ -128,6 +139,7 @@ img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Restaurant list styles */
 #restaurantList {
     margin-top: 20px;
     background-color: #fff;
@@ -136,6 +148,7 @@ img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Form styles */
 form {
     display: flex;
     flex-direction: column;
@@ -163,3 +176,95 @@ button {
 button:hover {
     background-color: var(--warmBrown);
 }
+
+/* Contact List Container Styles */
+#contactList {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr)); /* Three narrower columns */
+    grid-gap: 20px; /* Space between the cards */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.container {
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Arrange content in a column */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    padding: 20px; /* Add padding for spacing */
+    background-color: var(--beige); /* Background color for the container */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Style for the button inside the container */
+.container button {
+    background-color: var(--brown);
+    color: #fff;
+    padding: 10px 20px; /* Padding around the button */
+    border-radius: 5px; /* Rounded corners for the button */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s ease; /* Transition effect for hover */
+}
+
+/* Button hover effect */
+.container button:hover {
+    background-color: var(--warmBrown);
+}
+
+.container h1 {
+    text-align: center; /* Center text */
+    color: var(--gray); /* Use the defined gray color */
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    /* Add any additional styles you may want */
+  }
+
+/* Media Query for screens with width 800px and below */
+@media (max-width: 800px) {
+    #contactList {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on screens 800px and below */
+    }
+}
+
+/* Media Query for screens with width 500px and below */
+@media (max-width: 500px) {
+    #contactList {
+        grid-template-columns: 1fr; /* One column on screens 500px and below */
+    }
+}
+
+/* Contact Card Styles */
+.contact-card {
+    background-color: var(--beige); /* Background color of the cards */
+    border: 2px solid var(--brown); /* Border around each card */
+    border-radius: 10px; /* Rounded corners for the cards */
+    padding: 20px; /* Padding inside the cards */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for the cards */
+    overflow: hidden; /* Hide any overflow of content */
+    white-space: normal; /* Allow line breaks */
+    text-overflow: ellipsis; /* Show ellipsis if text overflows */
+}
+
+/* Contact Card Text Styles */
+.contact-card h2 {
+    margin: 0 0 10px; /* Margin for the contact name */
+    color: var(--brown);
+}
+
+.contact-card p {
+    margin: 5px 0; /* Margin for the contact information */
+    color: var(--gray);
+}
+
+.background-image {
+    background-image: url('../images/Homepage.jpg'); 
+    background-size: cover;
+    opacity: 0.4;
+    height: 100vh;
+  }

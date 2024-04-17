@@ -263,8 +263,8 @@ button:hover {
 }
 
 .background-image {
-    background-image: url('./assets/images/Homepage.jpg'); 
+    background-image: url('../images/Homepage.jpg'); 
     background-size: cover;
-    opacity: 0.5;
+    opacity: 0.4;
     height: 100vh;
   }

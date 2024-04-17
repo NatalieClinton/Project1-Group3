@@ -10,9 +10,8 @@
 <body>
   <!-- Navbar -->
   <div class="navbar">
-    <div class="title">Hungry Explorer</div>
     <div class="navbar-links">
-        <nav>
+      <nav>
         <!-- Logo (Image) -->
         <img src="./assets/images/HungryExplorerLogo.jpg" alt="Logo">
         <!-- Search Bar -->
@@ -23,9 +22,8 @@
         <a href="index.html">Home</a>
         <a href="restaurant.html">Restaurants</a>
         <a href="contact.html">Contacts</a>
-    </nav>
-    
-      <a href="#" id="signUpBtn">Sign Up</a>
+        <a href="#" id="signUpBtn">Sign Up</a>
+      </nav>
     </div>
   </div>
 
@@ -61,18 +59,19 @@
     </div>
   </div>
 
-  <!-- Address search container -->
-  <div class="search-container">
-    <button id="addressSearchBtn">Find Restaurant Near You</button>
-    <input type="text" id="addressInput" placeholder="Enter your address">
-  </div>
+<!-- Address search container -->
+<div class="search-container">
+  <button id="addressSearchBtn">Find Restaurant Near You</button>
+  <input type="text" id="addressInput" placeholder="Enter your address">
+</div>
+
 
   <!-- Background image -->
-  <div class="background-image"></div>
+  <div class="assets/images/Homepage.jpg"></div>
 
   <!-- JavaScript files -->
-  <script src="./Assets/JS/script.js"></script> <!-- Relative path to JavaScript file -->
-  <script src="./Assets/JS/homepage.js"></script> <!-- Relative path to JavaScript file -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA&libraries=places" async defer></script>
+  <script src="./Assets/js/script.js"></script> <!-- Relative path to JavaScript file -->
+  <script src="./Assets/js/homepage.js"></script> <!-- Relative path to JavaScript file -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 </html>

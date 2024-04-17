@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
+  // Elements
   const signUpBtn = document.getElementById("signUpBtn");
   const signUpModal = document.getElementById("signUpModal");
   const closeModal = document.querySelector(".close");
   const addEmailForm = document.getElementById("addEmailForm");
+  const addressSearchBtn = document.getElementById("addressSearchBtn");
+  const addressInput = document.getElementById('addressInput');
 
+  // Modal event listeners
   signUpBtn.addEventListener("click", function() {
     signUpModal.style.display = "block";
   });
@@ -13,11 +17,12 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   window.addEventListener("click", function(event) {
-    if (event.target == signUpModal) {
+    if (event.target === signUpModal) {
       signUpModal.style.display = "none";
     }
   });
 
+  // Form submission handler
   addEmailForm.addEventListener("submit", function(event) {
     event.preventDefault();
     const email = document.getElementById("emailAddress").value;
@@ -30,6 +35,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Redirect to the next page
     window.location.href = "restaurant.html";
   });
+
+  // Initialize autocomplete
+  initAutocomplete();
+
+  // Address search button click handler
+  addressSearchBtn.addEventListener("click", () => {
+    addressInput.focus();
+  });
 });
 
 function initAutocomplete() {
@@ -39,10 +52,6 @@ function initAutocomplete() {
   autocomplete.addListener('place_changed', () => {
     const place = autocomplete.getPlace();
     console.log('Place:', place);
-    // You can handle the selected place here
-  });
-
-  document.getElementById('addressSearchBtn').addEventListener('click', () => {
-    input.focus();
+    // Handle the selected place here
   });
 }

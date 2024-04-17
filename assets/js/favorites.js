@@ -100,15 +100,23 @@ window.onload = function () {
     loadFavorites();
     displayFavorites();
 }
-function submitReview() {
-    const reviewText = document.getElementById('reviewText').value.trim();
-    if (reviewText) {
-        const reviewItem = document.createElement('li');
-        reviewItem.textContent = reviewText;
-        document.getElementById('reviewsList').appendChild(reviewItem);
-        document.getElementById('reviewText').value = ''; // Clear the textarea
-    }
-}
+document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const name = document.getElementById('name').value.trim();
+    const rating = document.getElementById('rating').value.trim();
+    const comment = document.getElementById('comment').value.trim();
+
+    addReview(selectedRestaurantId, name, rating, comment);
+    
+    console.log('Review submitted:', feedbackData);
+    alert('Thank you for your review!');
+
+    // Clear the form
+    document.getElementById('name').value = '';
+    document.getElementById('comment').value = '';
+});
+
 function submitFeedback(event) {
     event.preventDefault(); // Prevent form submission
 

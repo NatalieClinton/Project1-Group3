@@ -94,7 +94,7 @@ function getLocalRestaurant(lat, lon) {
                         for (type of item.types) {
                             return type === 'restaurant'
                         }
-                        console.log(restaurants)
+                        // console.log(restaurants)
                     })
                     renderLocalRestaurants(restaurants);
                 });
@@ -106,7 +106,7 @@ function getLocalRestaurant(lat, lon) {
 //render results on the screen
 
 function renderLocalRestaurants(restaurantData) {
-    console.log(restaurantData);
+
     // Clear existing restaurant cards
     optionsContainer.innerHTML = '';
 
@@ -146,7 +146,7 @@ function renderLocalRestaurants(restaurantData) {
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Save';
         saveButton.classList.add("save-rest-btn")
-        saveButton.addEventListener('click', () => {
+        saveButton.addEventListener('click', function () {
             let savedRestaurant = JSON.parse(localStorage.getItem('savedRestaurant')) || [];
 
             const savedLocalRestData = {
@@ -214,10 +214,7 @@ function filterHighRatings(latitude, longitude) {
                     const restOverFourStars = data.results.filter(function (item) {
                         return item.rating >= 4
                     })
-                    console.log(restOverFourStars)
-
                     renderRestHighRatings(restOverFourStars)
-
                 })
             }
         })
@@ -237,8 +234,6 @@ function renderRestHighRatings(ratingsData) {
             const photoReference = ratingsData[i].photos[0].photo_reference;
             const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${googleApiKey}`;
             companyImg.src = photoUrl;
-        } else {
-            companyImg.src = 'placeholder-image-url.jpg'; // Use a placeholder image
         }
         companyImg.classList.add('restaurant-img');
 
@@ -259,7 +254,7 @@ function renderRestHighRatings(ratingsData) {
         const saveButton = document.createElement('button');
         saveButton.textContent = 'Save';
         saveButton.classList.add("save-rest-btn")
-        saveButton.addEventListener('click', () => {
+        saveButton.addEventListener('click', function () {
             let savedRestHighRating = JSON.parse(localStorage.getItem('savedRestHighRating')) || [];
 
             const savedRestInfo = {

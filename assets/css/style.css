@@ -295,9 +295,13 @@ button:hover {
 }
 
 .background-image {
+<<<<<<< HEAD
     background-image: url('./assets/images/Homepage.jpg');
+=======
+    background-image: url('../images/Homepage.jpg'); 
+>>>>>>> e9e021987a47ff2ce10e21de5a236e485a4829e2
     background-size: cover;
-    opacity: 0.5;
+    opacity: 0.4;
     height: 100vh;
 }
 

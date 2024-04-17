@@ -4,72 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hungry Explorer - Restaurant Finder</title>
+    
     <!-- TAILWIND CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/map.css">
 </head>
 
-  <!-- NAV BAR -->
-  <div class="container">
-    <div class="navbar-links">
-        <nav>
-        <!-- LOGO -->
-        <img src="./assets/images/HungryExplorerLogo.jpg" alt="Logo">
-        <!-- SEARCH BAR -->
-        <form>
-            <input type="text" placeholder="Search...">
-        </form>
-        <!-- PAGE OPTIONS -->
-        <a href="./index.html">Home</a>
-        <a href="./restaurant.html">Restaurants</a>
-        <a href="./contact.html">Contacts</a>
-    </nav>
-    
-
-      <a href="#" id="signUpBtn">Sign Up</a>
-    </div>
+      <!-- NAV BAR -->  
+  <div class="header-container">
+      <nav>
+          <!-- LOGO -->
+          <img src="./assets/images/HungryExplorerLogo.jpg" alt="Logo">
+          <!-- SEARCH -->
+          <span class="search-container">
+              <input type="text" id="search-input" name="search-input" aria-label="search" placeholder="Search"
+                  class="search-input">
+              <button class="search-btn btn">Search</button>
+              <!-- PAGE OPTIONS -->
+              <a href="./index.html">Home</a>
+              <a href="./restaurant.html">Restaurants</a>
+              <a href="./map.html">Map</a>
+              <a href="./contact.html">Contacts</a>
+      </nav>
   </div>
 
-   <!-- Aneri's Modal -->
-   <div class="modal" id="signUpModal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Sign Up</h2>
-      <!-- Sign-up form -->
-      <div class="modal-body">
-        <form id="addEmailForm">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="emailAddress" class="form-label">Email Address:</label>
-                <input type="email" class="form-control" id="emailAddress" required> <!-- Changed type to email -->
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" required>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" form="addEmailForm" class="btn btn-success" id="addTaskButton">
-          Register
-        </button>
-      </div>
-    </div>
-  </div>
 
 <body>
     <h1>Restaurant Finder</h1>
     <div id="map"></div>
+    <br>
+    <div id="restaurantDetails" class="restaurant-details-container"></div>
 
-    <script src="./assets/js/script.js"></script>
-    <script src="assets/js/homepage.js"></script> <!-- For signup modal-->
     <script src="./assets/js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA&libraries=places&callback=initMap"></script>
-</body>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA&libraries=places&callback=initMap"></script>
+  </body>
 </html>

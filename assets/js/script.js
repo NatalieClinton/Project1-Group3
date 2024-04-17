@@ -86,37 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// YELP Fusion API with CORS Anywhere integration
-function addPriceToRestaurant(restaurantId) {
-  const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
-  const yelpApiUrl = `https://api.yelp.com/v3/businesses/${restaurantId}`;
-
-  const settings = {
-    async: true,
-    crossDomain: true,
-    url: corsAnywhereUrl + yelpApiUrl,
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      authorization: 'Bearer XEI7zCKiTsrcNgP0ObLbm9EWlQ87cD2Jp9_5lcPXjdVG5WPvP81Dd8iZv4E3FEnqRiSD85w1OmVe9Vyd5kRlNUgJ6oxUZeUYK499qMWsXZu85aaS3gcSpHr1NvEVZnYx'
-    }
-  };
-
-  $.ajax(settings)
-    .done(function (response) {
-      const price = response.price;
-      // Create a new div element for price
-      const priceDiv = document.createElement('div');
-      priceDiv.innerText = 'Price: ' + price;
-      // Append the price div under the corresponding restaurant element
-      const restaurant = document.getElementById(restaurantId);
-      restaurant.appendChild(priceDiv);
-    })
-    .fail(function (xhr, status, error) {
-      console.error('Failed to fetch price:', error);
-    });
-}
-
 const apiKey = 'AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA';
 const searchQuery = 'restaurants in New York'; // Example search query
 

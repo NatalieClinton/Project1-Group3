@@ -4,39 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Information</title>
-    <link rel="stylesheet" href="./asset/js/css/style.css">
-
+    <link rel="stylesheet" href="./assets/css/favorites.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
-    
-  <!-- Navbar -->
-  <div class="navbar">
-    <div class="navbar-links">
-      <nav>
-        <!-- Logo (Image) -->
-        <img src="./assets/images/HungryExplorerLogo.jpg" alt="Logo">
-        <!-- Search Bar -->
-        <form>
-            <input type="text" placeholder="Search...">
-        </form>
-        <!-- Option Buttons -->
-        <a href="index.html">Home</a>
-        <a href="restaurant.html">Restaurants</a>
-        <a href="contact.html">Contacts</a>
-        <a href="#" id="signUpBtn">Sign Up</a>
+    <header>
         <div class="container">
-            <h1>Saved Restaurants</h1>
-      </nav>
-    </div>
-  </div>
-    </div>
-    <div class="container">
-        <h1>Restaurant Manager</h1>
-        <div id="restaurants-container"></div>
-        <button onclick="addRestaurant()">add restaurant</button>
-    </div>
-        <script src="./asset/js/script.js"></script> 
-        <script scr="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtHu4htfnL6bQ8_NLxxR5nrGXIH0zX8tM&libraries=places&callback=initAutocomplete"async defer></script>
-    </div>
+            <nav>
+                <img src="./assets/images/HungryExplorerLogo.jpg" alt="Logo">
+                <form>
+                    <input type="text" placeholder="Search...">
+                </form>
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="restaurant.html">Restaurants</a>
+                <a href="favorites.html">Favorites</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <aside>
+            <div class="container">
+                <h1>Write a Review</h1>
+                <form id="reviewForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required><br><br>
+                    <label for="rating">Rating:</label>
+                    <select id="rating" name="rating" required>
+                        <option value="5">5 stars⭐</option>
+                        <option value="4">4 stars⭐</option>
+                        <option value="3">3 stars⭐</option>
+                        <option value="2">2 stars⭐</option>
+                        <option value="1">1 star⭐</option>
+                    </select><br><br>
+                    <label for="comment">Comment:</label><br>
+                    <textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br><br>
+                    <button type="submit">Submit Review</button>
+                </form>
+            </div>
+            <div class="container">
+                <h1>Feedback Form</h1>
+                <form id="feedbackForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required><br><br>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br><br>
+                    <label for="message">Message:</label><br>
+                    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+                    <button type="submit" onclick="submitFeedback()">Submit Feedback</button>
+                </form>
+            </div>
+        </aside>
+        <section>
+            <div class="container">
+                <h1>Favorite Restaurants</h1>
+                <div id="favorites-container">
+                    <!-- Favorite restaurants will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+    </main>
+        <scripte src="./assets/js/favourites.js"></scripte>
 </body>
 </html>

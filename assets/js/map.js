@@ -3,13 +3,13 @@ var map;
 function initMap() {
     // Initialize map
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
+        center: { lat: -34.397, lng: 150.644 },
         zoom: 15
     });
 
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
@@ -21,19 +21,25 @@ function initMap() {
             // Request nearby restaurants
             var request = {
                 location: pos,
-                radius: '500',
-                type: ['restaurant']
+                radius: '10000',
+                types: ['restaurant'] // Specify types as 'restaurant'
             };
 
             var service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, function(results, status) {
+            service.nearbySearch(request, function (results, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    for (var i = 0; i < results.length; i++) {
-                        createMarker(results[i]);
-                    }
+                    // Clear existing restaurant details
+                    var restaurantDetailsContainer = document.getElementById('restaurantDetails');
+                    restaurantDetailsContainer.innerHTML = '';
+
+                    // Limit the results to the first 5 restaurants
+                    var closestRestaurants = results.slice(0, 5);
+                    closestRestaurants.forEach(function (restaurant) {
+                        showRestaurantDetails(restaurant.place_id);
+                    });
                 }
             });
-        }, function() {
+        }, function () {
             handleLocationError(true, map.getCenter());
         });
     } else {
@@ -44,51 +50,39 @@ function initMap() {
 
 function handleLocationError(browserHasGeolocation, pos) {
     alert(browserHasGeolocation ?
-                      'Error: The Geolocation service failed.' :
-                      'Error: Your browser doesn\'t support geolocation.');
-}
-
-function createMarker(place) {
-    var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location
-    });
-
-    var infowindow = new google.maps.InfoWindow({
-        content: '<strong>' + place.name + '</strong><br>' +
-                 'Rating: ' + place.rating + '<br>' +
-                 'Address: ' + place.vicinity + '<br>' +
-                 '<button onclick="showRestaurantDetails(\'' + place.place_id + '\')">View Details</button>'
-    });
-
-    marker.addListener('click', function() {
-        infowindow.open(map, marker);
-    });
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
 }
 
 function showRestaurantDetails(placeId) {
     var service = new google.maps.places.PlacesService(map);
     service.getDetails({
         placeId: placeId
-    }, function(place, status) {
+    }, function (place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            var modalContent = document.getElementById('restaurantDetails');
-            modalContent.innerHTML = '<h2>' + place.name + '</h2>' +
-                                     '<p><strong>Rating:</strong> ' + place.rating + '</p>' +
-                                     '<p><strong>Address:</strong> ' + place.formatted_address + '</p>' +
-                                     '<p><strong>Phone:</strong> ' + place.formatted_phone_number + '</p>' +
-                                     '<p><strong>Website:</strong> <a href="' + place.website + '">' + place.website + '</a></p>';
-            openModal();
+            // Create a list item for the restaurant details
+            var listItem = document.createElement('ul');
+            listItem.classList.add('restaurant-item');
+
+            // Populate the list item with restaurant information
+            var content = '<h2><strong>' + place.name + '</strong></h2>' +
+                '<p><strong>Rating:</strong> ' + place.rating + '</p>' +
+                '<p><strong>Address:</strong> ' + place.formatted_address + '</p>' +
+                '<p><strong>Phone:</strong> ' + place.formatted_phone_number + '</p>' +
+                '<p><strong>Website:</strong> <a href="' + place.website + '">' + place.website + '</a></p>';
+
+            // Check if the place has photos
+            if (place.photos && place.photos.length > 0) {
+                // Add the first photo to the content
+                content += '<img src="' + place.photos[0].getUrl({ maxWidth: 100 }) + '" alt="Restaurant Photo">';
+            }
+
+            // Set the content to the list item
+            listItem.innerHTML = content;
+
+            // Append the list item to the restaurant list container
+            var restaurantListContainer = document.getElementById('restaurantDetails');
+            restaurantListContainer.appendChild(listItem);
         }
     });
-}
-
-// Function to open modal
-function openModal() {
-    document.getElementById('signUpModal').style.display = "block";
-}
-
-// Function to close modal
-function closeModal() {
-    document.getElementById('signUpModal').style.display = "none";
 }

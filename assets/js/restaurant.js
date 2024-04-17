@@ -120,10 +120,10 @@ function renderLocalRestaurants(restaurantData) {
 
         //Checking there are any photos available
         if (restaurantData[i].photos && restaurantData[i].photos.length > 0) {
-            const photoReference = restaurantData[i].photos[0].photo_reference;
+            const companyImgReference = restaurantData[i].photos[0].photo_reference;
 
-            const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${googleApiKey}`;
-            companyImg.src = photoUrl;
+            const companyImgUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${companyImgReference}&key=${googleApiKey}`;
+            companyImg.src = companyImgUrl;
         }
 
         companyImg.classList.add('restaurant-img');
@@ -143,10 +143,10 @@ function renderLocalRestaurants(restaurantData) {
         rating.textContent = `${restaurantData[i].rating} stars`;
 
         /* save button*/
-        const saveButton = document.createElement('button');
-        saveButton.textContent = 'Save';
-        saveButton.classList.add("save-rest-btn")
-        saveButton.addEventListener('click', function () {
+        const savedBtn = document.createElement('button');
+        savedBtn.textContent = 'Save';
+        savedBtn.classList.add("save-rest-btn")
+        savedBtn.addEventListener('click', function () {
             let savedRestaurant = JSON.parse(localStorage.getItem('savedRestaurant')) || [];
 
             const savedLocalRestData = {
@@ -157,11 +157,11 @@ function renderLocalRestaurants(restaurantData) {
             };
 
             savedRestaurant.push(savedLocalRestData);
-            localStorage.setItem('savedRestHighRating', JSON.stringify(savedRestaurant));
+            localStorage.setItem('savedRestaurant', JSON.stringify(savedRestaurant));
         });
         /*end of save button */
 
-        introDiv.append(titleEl, saveButton);
+        introDiv.append(titleEl, savedBtn);
         detailsDiv.append(rating);
 
         article.append(companyImg, introDiv, detailsDiv);
@@ -221,26 +221,25 @@ function filterHighRatings(latitude, longitude) {
 }
 
 
+
 function renderRestHighRatings(ratingsData) {
     optionsContainer.innerHTML = '';
-    //looping through data, only 6 restaurants rendered
+
     for (let i = 0; i < ratingsData.length; i++) {
         const article = document.createElement('article');
         article.classList.add('restaurant-card');
 
         const companyImg = document.createElement('img');
-        //checking if any company photos exist
         if (ratingsData[i].photos && ratingsData[i].photos.length > 0) {
-            const photoReference = ratingsData[i].photos[0].photo_reference;
-            const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${googleApiKey}`;
-            companyImg.src = photoUrl;
+            const companyImgReference = ratingsData[i].photos[0].photo_reference;
+            const companyImgUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${companyImgReference}&key=${googleApiKey}`;
+            companyImg.src = companyImgUrl;
         }
         companyImg.classList.add('restaurant-img');
 
         const introDiv = document.createElement('div');
         introDiv.classList.add('intro');
 
-        //restaurant name
         const titleEl = document.createElement('h1');
         titleEl.textContent = ratingsData[i].name;
 
@@ -250,25 +249,24 @@ function renderRestHighRatings(ratingsData) {
         const rating = document.createElement('p');
         rating.textContent = `${ratingsData[i].rating} stars`;
 
-        //start of save btn
-        const saveButton = document.createElement('button');
-        saveButton.textContent = 'Save';
-        saveButton.classList.add("save-rest-btn")
-        saveButton.addEventListener('click', function () {
+        const savedBtn = document.createElement('button');
+        savedBtn.textContent = 'Save';
+        savedBtn.classList.add("save-rest-btn")
+        savedBtn.addEventListener('click', function () {
             let savedRestHighRating = JSON.parse(localStorage.getItem('savedRestHighRating')) || [];
 
             const savedRestInfo = {
                 name: ratingsData[i].name,
                 image: companyImg.src,
                 rating: ratingsData[i].rating
+                // Add other relevant restaurant data properties here
             };
 
             savedRestHighRating.push(savedRestInfo);
-            localStorage.setItem('savedRestHighRating', JSON.stringify(savedRestInfo));
+            localStorage.setItem('savedRestHighRating', JSON.stringify(savedRestHighRating));
         });
-        //end of saved btn
 
-        introDiv.append(titleEl, saveButton);
+        introDiv.append(titleEl, savedBtn);
         detailsDiv.append(rating);
 
         article.append(companyImg, introDiv, detailsDiv);
@@ -279,6 +277,7 @@ function renderRestHighRatings(ratingsData) {
         }
     }
 }
+
 
 //END - SEARCH BY RATING
 

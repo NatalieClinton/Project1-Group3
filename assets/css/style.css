@@ -83,6 +83,13 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-size: 20px;
+    text-align: center;
+    color: var(--gray);
+    padding-bottom: 30px;
+}
+
 /* Paragraph styles */
 p {
     font-size: 1.1rem;
@@ -507,40 +514,51 @@ section .options-container .restaurant-card .intro {
 
 }
 
-/* MAP PAGE CSS */
+/* MAP PAGE STYLES */
 #map {
     height: 400px;
     width: 100%;
 }
 
-/* CSS for restaurant details */
+/* RESTAURANT DETAIL STYLES */
 .restaurant-item {
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid var(--gray);
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: var(--beige); 
-    color: var(--offBlack); 
+    background-color: var(--beige);
+    color: var(--offBlack);
+    display: flex; 
+    align-items: center; 
+    text-align: left;
+}
+
+.restaurant-item img {
+    display: block;
+    margin-right: 20px; 
+    max-width: 100%;
+}
+
+.restaurant-info {
+    flex-grow: 1; 
 }
 
 .restaurant-item h2 {
-    font-size: 18px;
+    font-size: 22px;
     margin-bottom: 10px;
-    color: var(--brown);
+    color: var(--warmBrown);
+    padding-bottom: 0px;
+    text-decoration: underline;
+    text-align: left;
 }
 
 .restaurant-item p {
     margin: 5px 0;
     color: var(--warmBrown);
+    text-align: left;
 }
 
 .restaurant-item a {
-   color: rgb(0, 102, 255);
-}
-
-.restaurant-item img {
-    display: block;
-    margin-top: 10px;
-    max-width: 100%;
+    color: rgb(0, 102, 255);
 }

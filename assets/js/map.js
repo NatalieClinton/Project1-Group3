@@ -1,40 +1,49 @@
 var map;
 
+// FUNCTION TO INITIALIZE THE MAP AND RETRIEVE NEARBY RESTAURANTS
 function initMap() {
-    // Initialize map
+    // INITIALIZE MAP
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 15
+        center: { lat: -34.397, lng: 150.644 }, // DEFAULT CENTER LOCATION
+        zoom: 15 // DEFAULT ZOOM LEVEL
     });
 
-    // Try HTML5 geolocation.
+    // TRY HTML5 GEOLOCATION.
     if (navigator.geolocation) {
+        // IF GEOLOCATION IS SUPPORTED, GET CURRENT POSITION
         navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
 
-            // Set the map's center to the current location
+            // SET THE MAP'S CENTER TO THE CURRENT LOCATION
             map.setCenter(pos);
 
-            // Request nearby restaurants
+            // REQUEST NEARBY RESTAURANTS
             var request = {
                 location: pos,
                 radius: '10000',
-                types: ['restaurant'] // Specify types as 'restaurant'
+                types: ['restaurant'] 
             };
 
             var service = new google.maps.places.PlacesService(map);
+            // PERFORM A NEARBY SEARCH FOR RESTAURANTS
             service.nearbySearch(request, function (results, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    // Clear existing restaurant details
+                    // SORT RESTAURANTS BY RATING IN DESCENDING ORDER
+                    results.sort(function (a, b) {
+                        return b.rating - a.rating;
+                    });
+
+                    // CLEAR EXISTING RESTAURANT DETAILS
                     var restaurantDetailsContainer = document.getElementById('restaurantDetails');
                     restaurantDetailsContainer.innerHTML = '';
 
-                    // Limit the results to the first 5 restaurants
-                    var closestRestaurants = results.slice(0, 5);
-                    closestRestaurants.forEach(function (restaurant) {
+                    // LIMIT THE RESULTS TO THE BEST 5 RESTAURANTS
+                    var bestRestaurants = results.slice(0, 5);
+                    // DISPLAY DETAILS FOR EACH OF THE BEST 5 RESTAURANTS
+                    bestRestaurants.forEach(function (restaurant) {
                         showRestaurantDetails(restaurant.place_id);
                     });
                 }
@@ -43,46 +52,56 @@ function initMap() {
             handleLocationError(true, map.getCenter());
         });
     } else {
-        // Browser doesn't support Geolocation
+        // BROWSER DOESN'T SUPPORT GEOLOCATION
         handleLocationError(false, map.getCenter());
     }
 }
 
+// FUNCTION TO HANDLE GEOLOCATION ERRORS
 function handleLocationError(browserHasGeolocation, pos) {
     alert(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
 }
 
+// FUNCTION TO DISPLAY DETAILS OF A RESTAURANT
 function showRestaurantDetails(placeId) {
     var service = new google.maps.places.PlacesService(map);
+    // RETRIEVE DETAILS FOR THE RESTAURANT WITH THE GIVEN PLACE ID
     service.getDetails({
         placeId: placeId
     }, function (place, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            // Create a list item for the restaurant details
-            var listItem = document.createElement('ul');
-            listItem.classList.add('restaurant-item');
+            // CREATE A DIV FOR THE RESTAURANT ITEM
+            var restaurantItem = document.createElement('div');
+            restaurantItem.classList.add('restaurant-item');
 
-            // Populate the list item with restaurant information
-            var content = '<h2><strong>' + place.name + '</strong></h2>' +
-                '<p><strong>Rating:</strong> ' + place.rating + '</p>' +
-                '<p><strong>Address:</strong> ' + place.formatted_address + '</p>' +
-                '<p><strong>Phone:</strong> ' + place.formatted_phone_number + '</p>' +
-                '<p><strong>Website:</strong> <a href="' + place.website + '">' + place.website + '</a></p>';
+            // CREATE AN IMG ELEMENT FOR THE RESTAURANT IMAGE
+            var restaurantImg = document.createElement('img');
+            // SET THE IMAGE SOURCE TO THE FIRST PHOTO OF THE RESTAURANT, OR A DEFAULT IMAGE IF NO PHOTO IS AVAILABLE
+            restaurantImg.src = place.photos && place.photos.length > 0 ? place.photos[0].getUrl({ maxWidth: 200 }) : 'default-restaurant-image.jpg';
+            restaurantImg.alt = 'Restaurant Photo';
+            restaurantItem.appendChild(restaurantImg);
 
-            // Check if the place has photos
-            if (place.photos && place.photos.length > 0) {
-                // Add the first photo to the content
-                content += '<img src="' + place.photos[0].getUrl({ maxWidth: 100 }) + '" alt="Restaurant Photo">';
-            }
+            // CREATE A DIV FOR THE RESTAURANT INFORMATION
+            var restaurantInfo = document.createElement('div');
+            restaurantInfo.classList.add('restaurant-info');
 
-            // Set the content to the list item
-            listItem.innerHTML = content;
+            // POPULATE THE RESTAURANT INFORMATION
+            restaurantInfo.innerHTML = `
+                <h2><strong>${place.name}</strong></h2>
+                <p><strong>Rating:</strong> ${place.rating}</p>
+                <p><strong>Address:</strong> ${place.formatted_address}</p>
+                <p><strong>Phone:</strong> ${place.formatted_phone_number}</p>
+                <p><strong>Website:</strong> <a href="${place.website}">${place.website}</a></p>
+            `;
 
-            // Append the list item to the restaurant list container
-            var restaurantListContainer = document.getElementById('restaurantDetails');
-            restaurantListContainer.appendChild(listItem);
+            // APPEND THE RESTAURANT INFORMATION TO THE RESTAURANT ITEM
+            restaurantItem.appendChild(restaurantInfo);
+
+            // APPEND THE RESTAURANT ITEM TO THE CONTAINER
+            var restaurantDetailsContainer = document.getElementById('restaurantDetails');
+            restaurantDetailsContainer.appendChild(restaurantItem);
         }
     });
 }

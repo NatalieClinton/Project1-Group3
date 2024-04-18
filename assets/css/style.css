@@ -95,7 +95,7 @@ main h4 {
 
 #signUpBtn {
     display: block;  /* Ensures the button takes up the full width of its container */
-    margin: 120px auto; /* Centers the button left to right and adds top margin */
+    margin: 340px auto; /* Centers the button left to right and adds top margin */
     text-align: center; /* Centers the text within the button */
     padding-top: 10px; /* Adjust the top padding to control the distance from the top */
 }

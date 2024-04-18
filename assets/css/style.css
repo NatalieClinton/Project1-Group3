@@ -16,11 +16,12 @@ nav {
     background-color: var(--beige);
     padding: 10px 20px;
     border-radius: 10px;
+    margin-right: 100px;
 }
 
 /* Logo (Image) Styles */
 nav img {
-    max-height: 40px;
+    max-height: 60px;
     border-radius: 5px;
 }
 
@@ -238,13 +239,31 @@ button:hover {
     /* Use the defined gray color */
 }
 
+/* Search container styles */
 .search-container {
+    position: absolute; /* Absolute positioning */
+    top: 25%; /* Position it 25% down from the top */
+    left: 50%; /* Center the container horizontally */
+    transform: translateX(-50%); /* Adjust to center */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5px;
-    /* Add any additional styles you may want */
+    width: 100%; /* Allow the container to span the full width of the screen */
 }
+
+/* Background image styles */
+.background-image {
+    background-image: url('./assets/images/Homepage.jpg');
+    background-size: cover; /* Cover the entire screen */
+    background-position: top; /* Align to the top */
+    position: absolute; /* Absolute positioning */
+    top: 0;
+    left: 0;
+    width: 100%; /* Cover the full width */
+    height: 100vh; /* Cover the full height */
+    z-index: -1; /* Send the image behind other content */
+}
+
 
 /* Media Query for screens with width 800px and below */
 @media (max-width: 800px) {
@@ -334,11 +353,11 @@ header {
     height: 40px;
     width: 500px;
     border-radius: 20px;
-
 }
 
 .nav-links {
     width: 500px;
+    align-items: center;
 }
 
 header a {

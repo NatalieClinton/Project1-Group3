@@ -2,23 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hungry Explorer - Restaurant Finder</title>
     
     <!-- TAILWIND CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel= "stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-       <!-- Navbar -->
-       <nav>
-        <!-- Logo (Image) -->
+<body>
+    <!-- NAV BAR -->
+    <nav>
+        <!-- LOGO (IMAGE) -->
         <img src="./assets/images/HungryExplorerLogo.jpg" alt="Logo">
-        <!-- Search Bar -->
+        <!-- SEARCH BAR -->
         <form>
             <input type="text" placeholder="Search...">
         </form>
-        <!-- Option Buttons -->
+        <!-- OPTION BUTTONS -->
         <a href="./index.html">Home</a>
         <a href="./restaurant.html">Restaurants</a>
         <a href="./map.html">Map</a>
@@ -26,14 +28,20 @@
         <a href="./favorites.html">Favorites</a>
     </nav>
 
+    <main>
+        <br>
+        <h1>Restaurant Finder</h1>
+        <!-- MAP -->
+        <div id="map"></div>
+        <br>
+        <h2>Feeling famished? Check out the top 5 highest-rated restaurants within a 10km radius.</h2>
+        <!-- RESTAURANT DETAILS -->
+        <div id="restaurantDetails" class="restaurant-details-container"></div>
+    </main>
 
-<body>
-    <h1>Restaurant Finder</h1>
-    <div id="map"></div>
-    <br>
-    <div id="restaurantDetails" class="restaurant-details-container"></div>
-
+    <!-- JAVASCRIPT FILE -->
     <script src="./assets/js/map.js"></script>
+    <!-- GOOGLE PLACES API -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA&libraries=places&callback=initMap"></script>
   </body>
 </html>

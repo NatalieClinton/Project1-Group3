@@ -3,28 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hungry Explorer</title>
+  <title>Hungry Explorer - Home</title>
   <link rel="stylesheet" href="./assets/css/style.css"> <!-- Relative path to CSS file -->
 </head>
 
 <body>
-  <!-- Navbar -->
-  <div class="navbar">
-    <div class="navbar-links">
        <!-- Navbar -->
        <nav>
         <!-- Logo (Image) -->
         <img src="./assets/images/HungryExplorerLogo.jpg" alt="Logo">
+        <!-- Search Bar -->
+        <form>
+            <input type="text" placeholder="Search...">
+        </form>
         <!-- Option Buttons -->
         <a href="./index.html">Home</a>
         <a href="./restaurant.html">Restaurants</a>
         <a href="./map.html">Map</a>
         <a href="./contact.html">Contact</a>
         <a href="./favorites.html">Favorites</a>
-        <a href="#" id="signUpBtn">Sign Up</a>
-      </nav>
-    </div>
-  </div>
+    </nav>
+    
 
   <!-- Modal -->
   <div class="modal" id="signUpModal">
@@ -57,12 +56,18 @@
       </div>
     </div>
   </div>
+<main>
+<br>
+<br>
+<br>
+  <h1>Discover restaurants and more near you.</h1>
 
   <!-- Address search container -->
   <div class="search-container">
     <button id="addressSearchBtn">Find Restaurant Near You</button>
     <input type="text" id="addressInput" placeholder="Enter your address">
   </div>
+</main>
 
   <!-- Background image -->
   <div class="background-image"></div>

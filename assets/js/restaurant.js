@@ -69,7 +69,7 @@ function submitLocation() {
 
 //Use open weather api to get lat, lon of that city
 function getRestaurantLocation(restaurantCity) {
-    const weatherApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${restaurantCity}&appid=${weatherApiKey}`;
+    const weatherApiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${restaurantCity}&appid=${weatherApiKey}`;
     fetch(weatherApiUrl)
         .then(function (response) {
             if (response.ok) {
@@ -189,7 +189,7 @@ function highRatingLocation() {
         }
         restLocation = targetedCity[lastCity]
     }
-    const weatherApiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${restLocation}&appid=${weatherApiKey}`
+    const weatherApiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${restLocation}&appid=${weatherApiKey}`
     fetch(weatherApiUrl)
         .then(function (response) {
             if (response.ok) {

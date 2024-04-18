@@ -119,6 +119,12 @@ nav input {
     width: 100%;
     height: 80px;
 }
+#feedbackMessage {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
 .btn-container {
     display: flex;
     justify-content: flex-end;

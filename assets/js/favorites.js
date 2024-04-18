@@ -109,7 +109,7 @@ document.getElementById('reviewForm').addEventListener('submit', function(event)
 
     addReview(selectedRestaurantId, name, rating, comment);
     
-    console.log('Review submitted:', feedbackData);
+    console.log('Review submitted:', reviewData);
     alert('Thank you for your review!');
 
     // Clear the form
@@ -117,9 +117,8 @@ document.getElementById('reviewForm').addEventListener('submit', function(event)
     document.getElementById('comment').value = '';
 });
 
-function submitFeedback(event) {
+document.getElementById('feedbackForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
-
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
@@ -129,13 +128,16 @@ function submitFeedback(event) {
         alert('Please fill out all fields.');
         return;
     }
+    // Create an object to hold the feedback data
     const feedbackData = {
-        name,
-        email,
-        message
+        name: name,
+        email: email,
+        message: message
     };
     console.log('Feedback submitted:', feedbackData);
-    alert('Thank you for your feedback!');
-    // Clear the form
-    document.getElementById('feedbackForm').reset();
-}
+
+    // Show a success message to the user
+    const feedbackMessage = document.getElementById('feedbackMessage');
+    feedbackMessage.textContent = 'Thank you for your feedback!';
+    feedbackMessage.style.display = 'block';
+});

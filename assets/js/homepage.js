@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
     addressSearchBtn.addEventListener("click", () => {
         const address = addressInput.value.trim();
         if (address) {
+            addressSearchBtn.disabled = true;
             geocodeAddress(address); // Geocode the address
         } else {
             alert("Please enter an address");

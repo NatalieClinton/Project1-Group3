@@ -87,6 +87,19 @@ main h4 {
     -webkit-text-stroke: 1px black; /* width of outline and color */
 }
 
+/* Center the button within its container */
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+#signUpBtn {
+    display: block;  /* Ensures the button takes up the full width of its container */
+    margin: 120px auto; /* Centers the button left to right and adds top margin */
+    text-align: center; /* Centers the text within the button */
+    padding-top: 10px; /* Adjust the top padding to control the distance from the top */
+}
+
 /* Header styles */
 h1,
 h2,

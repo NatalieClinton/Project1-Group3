@@ -1,6 +1,7 @@
-
 let nextRestaurantId = 1;
 let favorites = [];
+let selectedRestaurantId; // Placeholder definition for selectedRestaurantId
+let reviews = []; // Define the reviews array
 
 function addRestaurant() {
     const restaurantContainer = document.getElementById('restaurants-container');
@@ -21,29 +22,8 @@ function addRestaurant() {
 
     restaurantContainer.appendChild(restaurantDiv);
     nextRestaurantId++;
-    const googleApiKey='AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA';
 }
-function saveRestaurant(id) {
-    const restaurant = document.getElementById(`restaurant-${id}`);
-    if (restaurant) {
-        const saveButton = restaurant.querySelector('.save-btn');
-        saveButton.textContent = 'Saved';
-        saveButton.disabled = true;
-        favorites.push(id);
-    }
-    function saveRestaurant() {
-        const name = document.getElementById('name').value.trim();
-        const description = document.getElementById('description').value.trim();
-        const location = document.getElementById('location').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const website = document.getElementById('website').value.trim();
-        // Create a new restaurant object
-        const restaurant = { name, description, location, phone, website };
-        // Save the restaurant to storage, database, or other backend
-        console.log('Restaurant saved:', restaurant);
-    }
-    
-}
+
 function saveRestaurant(id) {
     // Check if the restaurant is already in favorites
     if (!favorites.includes(id)) {
@@ -53,20 +33,7 @@ function saveRestaurant(id) {
         displayFavorites(); // Update the displayed favorites
     }
 }
-function saveRestaurant() {
-    const name = document.getElementById('name').value.trim();
-    const description = document.getElementById('description').value.trim();
-    const location = document.getElementById('location').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const website = document.getElementById('website').value.trim();
-}
-function loadFavorites() {
-    const savedFavorites = localStorage.getItem('favorites');
-    if (savedFavorites) {
-        favorites = JSON.parse(savedFavorites);
-        displayFavorites(); // Display the loaded favorites
-    }
-}
+
 function removeRestaurant(id) {
     const index = favorites.indexOf(id);
     if (index !== -1) {
@@ -77,9 +44,12 @@ function removeRestaurant(id) {
         }
     }
 }
+
 function displayFavorites() {
     const favoritesContainer = document.getElementById('favorites-container');
-  favorites.forEach(id => {
+    favoritesContainer.innerHTML = ''; // Clear previous content
+
+    favorites.forEach(id => {
         const restaurant = document.getElementById(`restaurant-${id}`);
         if (restaurant) {
             const clone = restaurant.cloneNode(true);
@@ -87,19 +57,23 @@ function displayFavorites() {
             saveButton.textContent = 'Remove';
             saveButton.onclick = function () {
                 removeRestaurant(id);
-                clone.remove();
             };
             favoritesContainer.appendChild(clone);
         }
     });
 }
 
-// Trigger displayFavorites when the page loads
-window.onload = displayFavorites;
-window.onload = function () {
-    loadFavorites();
-    displayFavorites();
+function loadFavorites() {
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+        favorites = JSON.parse(savedFavorites);
+        displayFavorites(); // Display the loaded favorites
+    }
 }
+
+// Trigger loadFavorites when the page loads
+window.onload = loadFavorites;
+
 document.getElementById('reviewForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
 
@@ -107,10 +81,8 @@ document.getElementById('reviewForm').addEventListener('submit', function(event)
     const rating = document.getElementById('rating').value.trim();
     const comment = document.getElementById('comment').value.trim();
 
+    // Call the addReview function with selectedRestaurantId
     addReview(selectedRestaurantId, name, rating, comment);
-    
-    console.log('Review submitted:', feedbackData);
-    alert('Thank you for your review!');
 
     // Clear the form
     document.getElementById('name').value = '';
@@ -129,13 +101,32 @@ function submitFeedback(event) {
         alert('Please fill out all fields.');
         return;
     }
+
     const feedbackData = {
         name,
         email,
         message
     };
+
     console.log('Feedback submitted:', feedbackData);
     alert('Thank you for your feedback!');
     // Clear the form
     document.getElementById('feedbackForm').reset();
+}
+
+function addReview(restaurantId, name, rating, comment) {
+    // Assuming you have a feedbackData object where you store reviews
+    const review = {
+        restaurantId: restaurantId,
+        name: name,
+        rating: rating,
+        comment: comment
+    };
+
+    // You can add the review to an array or send it to a server/database
+    // For demonstration, let's assume there's an array called 'reviews'
+    reviews.push(review);
+
+    // Log the review for demonstration purposes
+    console.log('Review added:', review);
 }

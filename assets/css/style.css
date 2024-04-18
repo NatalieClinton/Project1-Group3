@@ -335,11 +335,13 @@ button:hover {
 
 /*RESTAURANT.CSS STYLES*/
 
+/*logo inside header*/
 .logo-img {
     height: 75px;
     border-radius: 10px;
 }
 
+/*header styles*/
 header {
     background-color: var(--beige);
 }
@@ -354,21 +356,22 @@ header {
     margin: auto;
 }
 
-.search-input {
+/*HEADER -input*/
+#search-input {
     padding: 5px 10px;
-    height: 40px;
+    height: 35px;
     width: 450px;
     border-radius: 20px;
     /* border: 1px solid rgba(0, 0, 0, 0.55); */
 }
 
-
+/*HEADER - link element*/
 header a {
     color: #FCFCFD;
     background-color: #251D18;
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 22px;
+    margin: 0 10px;
+    font-size: 16px;
     padding: 10px 15px;
     margin: 0 0 0 10px;
     border-radius: 15px;
@@ -381,6 +384,7 @@ header a:hover {
 
 }
 
+/* H1 - titled: quick options */
 .title {
     text-align: center;
     padding-top: 20px;
@@ -388,7 +392,7 @@ header a:hover {
 }
 
 
-
+/*styles for rendered restaurants*/
 .options-container {
     display: flex;
     justify-content: center;
@@ -399,7 +403,7 @@ header a:hover {
     margin: auto;
 }
 
-
+/*styles for individual restaurant*/
 .restaurant-card {
     width: 275px;
 }
@@ -414,6 +418,7 @@ header a:hover {
     font-size: 20px;
 }
 
+/*WEATHER*/
 .details {
     display: flex;
     justify-content: space-between;
@@ -434,6 +439,9 @@ section .options-container .restaurant-card .intro {
     color: black
 }
 
+/*end of weather*/
+
+/*img for rendered restaurant*/
 .restaurant-img {
     height: 200px;
     width: 300px;
@@ -441,6 +449,7 @@ section .options-container .restaurant-card .intro {
     border-radius: 20px;
 }
 
+/*container holding rendered restaurants */
 .filter-container {
     display: flex;
     justify-content: center;
@@ -458,14 +467,17 @@ section .options-container .restaurant-card .intro {
     border-radius: 10px;
     cursor: pointer;
     font-size: 15px;
+
 }
 
+/*save restaurant btn*/
 .save-rest-btn {
-    height: 75px;
-    width: 100px;
-
+    height: 50px;
+    width: 70px;
+    margin: 0 5px;
 }
 
+/*close weather modal btn*/
 .close-modal-btn {
     border: 1px solid #EBEAE9;
 
@@ -477,6 +489,7 @@ section .options-container .restaurant-card .intro {
     margin-top: 0;
 }
 
+/*weather modal*/
 .weather-container {
     position: fixed;
     top: 0;
@@ -496,6 +509,7 @@ section .options-container .restaurant-card .intro {
     border-radius: 30px;
 }
 
+/*responsible for hiding weather modal*/
 .hidden {
     display: none;
 }
@@ -510,10 +524,13 @@ section .options-container .restaurant-card .intro {
     margin: 20px;
 }
 
+
+/*media query*/
 @media screen and (max-width: 1200px) {
     .nav-links {
         width: 700px;
     }
+
 }
 
 @media screen and (max-width: 1100px) {
@@ -529,6 +546,8 @@ section .options-container .restaurant-card .intro {
     .header-container {
         width: 100%;
     }
+
+
 
 }
 
@@ -547,19 +566,19 @@ section .options-container .restaurant-card .intro {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: var(--beige);
     color: var(--offBlack);
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     text-align: left;
 }
 
 .restaurant-item img {
     display: block;
-    margin-right: 20px; 
+    margin-right: 20px;
     max-width: 100%;
 }
 
 .restaurant-info {
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
 .restaurant-item h2 {

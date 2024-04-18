@@ -1,13 +1,26 @@
 
+// Variable to keep track of the next restaurant ID
 let nextRestaurantId = 1;
+
+// Array to store favorite restaurant IDs
 let favorites = [];
 
+// Placeholder for selected restaurant ID
+let selectedRestaurantId;
+
+// Array to store reviews
+let reviews = [];
+
+// Function to add a new restaurant to the page
 function addRestaurant() {
+    // Get the container for restaurants
     const restaurantContainer = document.getElementById('restaurants-container');
 
+    // Create a new div element for the restaurant
     const restaurantDiv = document.createElement('div');
     restaurantDiv.className = 'restaurant';
     restaurantDiv.id = `restaurant-${nextRestaurantId}`;
+
 
     restaurantDiv.innerHTML = `
         <h2>Restaurant Name ${nextRestaurantId}</h2>
@@ -19,52 +32,27 @@ function addRestaurant() {
         <button class="save-btn" onclick="saveRestaurant(${nextRestaurantId})">Save</button>
     `;
 
+    // Append the restaurant div to the container
     restaurantContainer.appendChild(restaurantDiv);
-    nextRestaurantId++;
-    const googleApiKey='AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA';
-}
-function saveRestaurant(id) {
-    const restaurant = document.getElementById(`restaurant-${id}`);
-    if (restaurant) {
-        const saveButton = restaurant.querySelector('.save-btn');
-        saveButton.textContent = 'Saved';
-        saveButton.disabled = true;
-        favorites.push(id);
-    }
-    function saveRestaurant() {
-        const name = document.getElementById('name').value.trim();
-        const description = document.getElementById('description').value.trim();
-        const location = document.getElementById('location').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const website = document.getElementById('website').value.trim();
-        // Create a new restaurant object
-        const restaurant = { name, description, location, phone, website };
-        // Save the restaurant to storage, database, or other backend
-        console.log('Restaurant saved:', restaurant);
-    }
     
+    // Add event listener to the save button to save the restaurant
+    const saveButton = restaurantDiv.querySelector('.save-btn');
+    saveButton.addEventListener('click', function() {
+        saveRestaurant(nextRestaurantId);
+    });
+
+    // Increment the restaurant ID for the next restaurant
+    nextRestaurantId++;
 }
 function saveRestaurant(id) {
     // Check if the restaurant is already in favorites
     if (!favorites.includes(id)) {
+        // Add the restaurant ID to favorites array
         favorites.push(id);
         // Save favorites to local storage
         localStorage.setItem('favorites', JSON.stringify(favorites));
-        displayFavorites(); // Update the displayed favorites
-    }
-}
-function saveRestaurant() {
-    const name = document.getElementById('name').value.trim();
-    const description = document.getElementById('description').value.trim();
-    const location = document.getElementById('location').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const website = document.getElementById('website').value.trim();
-}
-function loadFavorites() {
-    const savedFavorites = localStorage.getItem('favorites');
-    if (savedFavorites) {
-        favorites = JSON.parse(savedFavorites);
-        displayFavorites(); // Display the loaded favorites
+        // Update the displayed favorites
+        displayFavorites();
     }
 }
 function removeRestaurant(id) {
@@ -77,45 +65,81 @@ function removeRestaurant(id) {
         }
     }
 }
+// Function to display favorite restaurants
 function displayFavorites() {
     const favoritesContainer = document.getElementById('favorites-container');
-  favorites.forEach(id => {
+    // Clear previous content
+    favoritesContainer.innerHTML = '';
+
+    // Iterate through favorite restaurants and display them
+    favorites.forEach(id => {
         const restaurant = document.getElementById(`restaurant-${id}`);
         if (restaurant) {
+            // Clone the restaurant element and update save button text and behavior
             const clone = restaurant.cloneNode(true);
             const saveButton = clone.querySelector('.save-btn');
             saveButton.textContent = 'Remove';
             saveButton.onclick = function () {
                 removeRestaurant(id);
-                clone.remove();
             };
             favoritesContainer.appendChild(clone);
         }
     });
 }
-
+// Function to load favorite restaurants from local storage
+function loadFavorites() {
+    const savedFavorites = localStorage.getItem('favorites');
+    if (savedFavorites) {
+        // Parse saved favorites from local storage
+        favorites = JSON.parse(savedFavorites);
+        // Display the loaded favorites
+        displayFavorites();
+    }
+}
 // Trigger displayFavorites when the page loads
 window.onload = displayFavorites;
 window.onload = function () {
     loadFavorites();
     displayFavorites();
 }
-document.getElementById('reviewForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
-
-    const name = document.getElementById('name').value.trim();
-    const rating = document.getElementById('rating').value.trim();
-    const comment = document.getElementById('comment').value.trim();
-
-    addReview(selectedRestaurantId, name, rating, comment);
+// Trigger adding event listener when the DOM content is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Try to get the review form element
+    const reviewForm = document.getElementById('reviewForm');
     
-    console.log('Review submitted:', reviewData);
-    alert('Thank you for your review!');
+    // Check if the review form element exists before adding the event listener
+    reviewForm?.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
 
-    // Clear the form
-    document.getElementById('name').value = '';
-    document.getElementById('comment').value = '';
+        // Get review form data
+        const name = document.getElementById('name').value.trim();
+        const rating = document.getElementById('rating').value.trim();
+        const comment = document.getElementById('comment').value.trim();
+
+        // Call addReview function with selected restaurant ID
+        addReview(selectedRestaurantId, name, rating, comment);
+
+        // Clear the form
+        document.getElementById('name').value = '';
+        document.getElementById('comment').value = '';
+    });
 });
+// Function to add a review for a restaurant
+function addReview(restaurantId, name, rating, comment) {
+    // Create a review object
+    const review = {
+        restaurantId: restaurantId,
+        name: name,
+        rating: rating,
+        comment: comment
+    };
+
+    // Add the review to reviews array 
+    reviews.push(review);
+
+    // Log the review 
+    console.log('Review added:', review);
+}
 
 document.getElementById('feedbackForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
@@ -130,14 +154,11 @@ document.getElementById('feedbackForm').addEventListener('submit', function(even
     }
     // Create an object to hold the feedback data
     const feedbackData = {
+        restaurantId: restaurantId,
         name: name,
         email: email,
         message: message
     };
+    feedbackData.push(review);
     console.log('Feedback submitted:', feedbackData);
-
-    // Show a success message to the user
-    const feedbackMessage = document.getElementById('feedbackMessage');
-    feedbackMessage.textContent = 'Thank you for your feedback!';
-    feedbackMessage.style.display = 'block';
 });

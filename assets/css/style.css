@@ -69,6 +69,24 @@ body {
     line-height: 1.6;
 }
 
+main h2 {
+    font-size: 25px;
+    margin-bottom: 2rem;
+    color: var(--gray);
+    text-align: center;
+    font-weight: bolder;
+    
+    /* Adding a glowing effect behind the text */
+    text-shadow: 
+        0 0 5px rgba(240, 232, 190, 0.5), /* yellow glow */
+        0 0 10px rgba(255, 255, 0, 0.5), /* yellow glow */
+        0 0 15px rgba(182, 182, 18, 0.5), /* yellow glow */
+        0 0 20px rgba(255, 255, 0, 0.5); /* yellow glow */
+
+    /* Adding a black outline to each letter */
+    -webkit-text-stroke: 1px black; /* width of outline and color */
+}
+
 /* Header styles */
 h1,
 h2,

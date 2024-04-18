@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hungry Explorer - Home</title>
+  
+  <!-- Tailwind CSS -->
+  <link rel= "stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <!-- Our CSS -->
   <link rel="stylesheet" href="./assets/css/style.css"> <!-- Relative path to CSS file -->
 </head>
 
@@ -23,57 +27,67 @@
         <a href="./contact.html">Contact</a>
         <a href="./favorites.html">Favorites</a>
     </nav>
-    
 
-  <!-- Modal -->
-  <div class="modal" id="signUpModal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Sign Up</h2>
-      <!-- Sign-up form -->
-      <div class="modal-body">
-        <form id="addEmailForm">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="emailAddress" class="form-label">Email Address:</label>
-                <input type="email" class="form-control" id="emailAddress" required> <!-- Changed type to email -->
+<main>
+
+  <h1>Discover restaurants and more near you.</h1>
+
+  <!-- Sign Up Button -->
+  <button id="signUpBtn">Sign in to see restaurants near you</button>
+    <!-- Modal -->
+    <div class="modal" id="signUpModal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Sign Up</h2>
+        <!-- Sign-up form -->
+        <div class="modal-body">
+          <form id="addEmailForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="emailAddress" class="form-label">Email Address:</label>
+                  <input type="email" class="form-control" id="emailAddress" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password:</label>
+                  <input type="password" class="form-control" id="password" required>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="mb-3">
+                  <label for="address" class="form-label">Address:</label>
+                  <input type="text" class="form-control" id="address" required>
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" required>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" form="addEmailForm" class="btn btn-success" id="addTaskButton">
-          Register
-        </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" form="addEmailForm" class="btn btn-success" id="addTaskButton">
+            Register
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-<main>
-<br>
-<br>
-<br>
-  <h1>Discover restaurants and more near you.</h1>
 
   <!-- Address search container -->
   <div class="search-container">
     <button id="addressSearchBtn">Find Restaurant Near You</button>
     <input type="text" id="addressInput" placeholder="Enter your address">
   </div>
-</main>
 
   <!-- Background image -->
   <div class="background-image"></div>
 
-  <!-- JavaScript files -->
-  <script src="./Assets/JS/homepage.js"></script> <!-- Relative path to JavaScript file -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA&libraries=places" async defer></script>
+</main>
+
+  <!-- Google Places API -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA&libraries=places"></script>
+  <!-- Home JS -->
+  <script src="./assets/js/homepage.js"></script> 
+  <!-- Restaurant JS -->
+  <script src="./assets/js/restaurant.js" ></script>
 </body>
 </html>

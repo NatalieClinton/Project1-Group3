@@ -28,34 +28,55 @@
     </nav>
 
     <main>
+        <!-- Weather Container Section -->
         <section class="weather-container hidden">
+            <!-- Container for close button -->
             <div class="btn-container">
                 <button class="close-modal-btn btn">X</button>
             </div>
+            <!-- Title for Weather Section -->
             <h1>Daily Weather</h1>
+            <!-- Article for Weather Forecast -->
             <article class="forecast">
+                <!-- Top Section for Weather Details -->
                 <div class="top weather-details">
+                    <!-- Placeholder for Weather Information -->
                     <p>Enter a location to view current weather</p>
                 </div>
+                <!-- Bottom Section for Additional Weather Details -->
                 <div class="bottom weather-details">
 
                 </div>
             </article>
         </section>
-        <!--Filter Btns-->
+        <!-- End of Weather Container Section -->
+
+
+
+        <!-- Filter Buttons Section -->
         <section class="filter-container">
+            <!-- Button to filter by high ratings -->
             <button class="ratingsBtn btn">4 or more stars</button>
+            <!-- Button to toggle weather display -->
             <button class="weather-btn btn">Weather</button>
         </section>
-        <!--End of filter btns-->
-        <!--Start of restaurant section-->
+        <!-- End of Filter Buttons Section -->
+
+        <!-- Search Input Field -->
+        <input id="search-input" type="text" placeholder="Enter your City">
+        
+        <!-- Search Button -->
+        <button class="search-btn">Search</button>
+        
+        <!-- Start of Restaurant Section -->
         <section class="restaurant-section">
+            <!-- Title for Restaurant Section -->
             <h1 class="title">Quick Options</h1>
+            <!-- Container for Restaurant Options -->
             <div class="options-container"></div>
-
         </section>
-        <!--End of restaurant section-->
-
+        <!-- End of Restaurant Section -->
+        
     </main>
     <script src="assets/js/restaurant.js"></script>
 </body>

@@ -14,6 +14,7 @@ const weatherBtn = document.querySelector('.weather-btn')
 const displayMode = document.querySelector('.display-mode')
 const weatherContainer = document.querySelector('.weather-container')
 const closeModalBtn = document.querySelector('.close-modal-btn')
+
 //API key - google places api
 const googleApiKey = 'AIzaSyBxWw3DSNZJTDbkBnPVZabPtuLWZAgpOcA'
 const weatherApiKey = 'd355ce3e26db350e68b9a4e198dac7bb';
@@ -21,9 +22,27 @@ const weatherApiKey = 'd355ce3e26db350e68b9a4e198dac7bb';
 
 //event listeners
 searchBtn.addEventListener('click', submitLocation);
-ratingsBtn.addEventListener('click', highRatingLocation)
+ratingsBtn.addEventListener('click', highRatingLocation);
+weatherBtn.addEventListener('click', toggleWeather);
+closeModalBtn.addEventListener('click', toggleWeather);
 
+// Function to toggle weather container visibility
+function toggleWeather() {
+    const weatherContainer = document.querySelector('.weather-container');
+    weatherContainer.classList.toggle('hidden');
+}
 
+// User submits their city
+function submitLocation() {
+    const city = searchInput.value;
+    if (city) {
+        let currentCity = JSON.parse(localStorage.getItem('currentCity')) || [];
+        currentCity.push(city);
+        localStorage.setItem('currentCity', JSON.stringify(currentCity));
+        searchInput.value = '';
+        getRestaurantLocation(city);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const savedRestaurantData = localStorage.getItem('restaurantData');

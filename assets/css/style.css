@@ -58,6 +58,13 @@ nav a:hover {
     background-color: var(--warmBrown);
 }
 
+.searchRestaurant {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center the items horizontally */
+    align-items: center; /* Center the items vertically (optional) */
+    margin-top: 20px; /* Add margin-top to create some spacing from other elements */
+}
+
 /* Body and general text styles */
 body {
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;

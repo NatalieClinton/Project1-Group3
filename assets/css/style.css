@@ -241,27 +241,38 @@ button:hover {
 
 /* Search container styles */
 .search-container {
-    position: absolute; /* Absolute positioning */
-    top: 25%; /* Position it 25% down from the top */
-    left: 50%; /* Center the container horizontally */
-    transform: translateX(-50%); /* Adjust to center */
+    position: absolute;
+    /* Absolute positioning */
+    top: 25%;
+    /* Position it 25% down from the top */
+    left: 50%;
+    /* Center the container horizontally */
+    transform: translateX(-50%);
+    /* Adjust to center */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; /* Allow the container to span the full width of the screen */
+    width: 100%;
+    /* Allow the container to span the full width of the screen */
 }
 
 /* Background image styles */
 .background-image {
     background-image: url('./assets/images/Homepage.jpg');
-    background-size: cover; /* Cover the entire screen */
-    background-position: top; /* Align to the top */
-    position: absolute; /* Absolute positioning */
+    background-size: cover;
+    /* Cover the entire screen */
+    background-position: top;
+    /* Align to the top */
+    position: absolute;
+    /* Absolute positioning */
     top: 0;
     left: 0;
-    width: 100%; /* Cover the full width */
-    height: 100vh; /* Cover the full height */
-    z-index: -1; /* Send the image behind other content */
+    width: 100%;
+    /* Cover the full width */
+    height: 100vh;
+    /* Cover the full height */
+    z-index: -1;
+    /* Send the image behind other content */
 }
 
 
@@ -331,43 +342,38 @@ button:hover {
 
 header {
     background-color: var(--beige);
-
 }
 
 
 .header-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     width: 80%;
     margin: auto;
 }
 
-.search-container {
-    width: 900px;
-}
-
-#search-input {
+.search-input {
     padding: 5px 10px;
     height: 40px;
-    width: 500px;
+    width: 450px;
     border-radius: 20px;
+    /* border: 1px solid rgba(0, 0, 0, 0.55); */
 }
 
-.nav-links {
-    width: 500px;
-    align-items: center;
-}
 
 header a {
-    color: #fff;
+    color: #FCFCFD;
     background-color: #251D18;
-    padding: 10px 15px;
-    margin: 0 10px;
-    border-radius: 10px;
     text-decoration: none;
+    margin: 0 15px;
+    font-size: 22px;
+    padding: 10px 15px;
+    margin: 0 0 0 10px;
+    border-radius: 15px;
 }
+
 
 header a:hover {
     background-color: var(--warmBrown);
@@ -539,8 +545,8 @@ section .options-container .restaurant-card .intro {
     border: 1px solid var(--gray);
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: var(--beige); 
-    color: var(--offBlack); 
+    background-color: var(--beige);
+    color: var(--offBlack);
 }
 
 .restaurant-item h2 {
@@ -555,7 +561,7 @@ section .options-container .restaurant-card .intro {
 }
 
 .restaurant-item a {
-   color: rgb(0, 102, 255);
+    color: rgb(0, 102, 255);
 }
 
 .restaurant-item img {
